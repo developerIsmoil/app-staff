@@ -1,0 +1,49 @@
+
+###
+PUT http://localhost:8084/api/staff/v1/view/update-view
+Content-Type: application/json
+
+{
+  "id": "4ae23cf7-fcab-4482-921d-17d356d20f60",
+  "autoSave": false,
+  "defaultView": true,
+  "type": "TABLE",
+  "columns": [
+    {
+      "id": "first_name",
+      "pinned": false,
+      "hidden": false,
+      "width": null
+    }
+  ],
+  "sorting": [
+    {
+      "field": "first_name",
+      "orderIndex": "",
+      "direction": 1,
+      "fieldType": "SHORT_TEXT"
+    }
+  ],
+  "rowSize": "SMALL",
+  "viewFilter": {
+    "filterOperator": "AND",
+    "search": "seach",
+    "searchingColumn": [
+      {
+        "columnType": "SHORT_TEXT",
+        "columnName": "name"
+      }
+    ],
+    "filterFields": [
+      {
+        "compareOperatorType": "EQ",
+        "orderIndex": 1,
+        "field": "first_name",
+        "fieldType": "SHORT_TEXT",
+        "value": {
+          "searchingValue": "serch"
+        }
+      }
+    ]
+  }
+}

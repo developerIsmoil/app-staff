@@ -1,0 +1,12 @@
+management:
+  endpoints:
+    web:
+      exposure:
+        include: refresh,env
+spring:
+  application:
+    name: config-client
+  cloud:
+    config:
+      uri: http://185.74.5.104:9292
+      name: main

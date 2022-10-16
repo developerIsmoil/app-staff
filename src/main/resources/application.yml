@@ -1,0 +1,11 @@
+spring:
+  application:
+    name: STAFF-SERVICE
+  profiles:
+#    active: test
+#    active: dev
+    active: prod
+#    active: turniket
+
+service:
+  username: usernameStaffService

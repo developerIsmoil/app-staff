@@ -1,0 +1,88 @@
+server:
+  port: 8084
+#  host: 10.10.6.175
+  host: 185.74.5.104
+
+#
+#  port: 8085
+#  Qo'shimcha port
+spring:
+  datasource:
+#    url: jdbc:postgresql://localhost:5432/staff
+#    url: jdbc:postgresql://${server.host}:5482/staff
+    url: jdbc:postgresql://localhost:5482/staff
+    username: staff
+    password: b76elL6v58FWdMfD
+#    password: F2uHf7t6kvYEG9bf
+    driverClassName: org.postgresql.Driver
+  jpa:
+    open-in-view: false
+    #    https://stackoverflow.com/questions/30549489/what-is-this-spring-jpa-open-in-view-true-property-in-spring-boot
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        enable_lazy_load_no_trans: true
+        jdbc:
+          lob:
+            non_contextual_creation: true
+  sql:
+    init:
+      mode: never
+  cache:
+    type: redis
+    cache-names: "forStaffServiceUsers"
+  redis:
+    host: localhost
+    port: 6379
+    timeout: 1000
+    ssl: false
+    lettuce:
+      pool:
+        max-wait: 1000
+        max-active: 1000
+
+  rabbitmq:
+    host: ${server.host}
+    port: 5672
+    username: springboot
+    password: C2EUk5pgJWdKJv5
+    staff:
+      default-exchange: staff.defaultDirectExchange
+      queues:
+        turniket-notification-for-staff:
+          name: staff.turniket-notification-for-staff
+          durable: true
+          routing-key: turniket-notification-for-staff
+
+
+
+logging:
+  pattern:
+    file: "%d{yyyy-MM-dd HH:mm:ss} - %msg%n"
+  file:
+    name: /home/project/logs/staff.log
+  level:
+    org.springframework.web: ERROR
+    org.hibernate: ERROR
+
+springdoc:
+  api-docs:
+    enabled: true
+    path: /api-docs
+  swagger-ui:
+    enabled: true
+    path: /swagger
+
+
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: http://pdperpusername:123456pdperpusername@${server.host}:8700/eureka
+  instance:
+    hostname: ${server.host}
+
+employeeWorkingStartTime: '09:00:00'

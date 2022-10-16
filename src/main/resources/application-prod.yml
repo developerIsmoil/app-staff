@@ -1,0 +1,95 @@
+#
+server:
+  port: 8884
+  host: 185.74.6.107
+#
+#  port: 8085
+#  Qo'shimcha port
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/staff
+    username: staff
+    password: F2uHf7t6kvYEG9bf
+    driverClassName: org.postgresql.Driver
+    hikari:
+      minimumIdle: 2
+      maximumPoolSize: 10
+      idleTimeout: 130000
+      connectionTimeout: 310000
+      leakDetectionThreshold: 310000
+      #
+  jpa:
+    open-in-view: false
+    #    https://stackoverflow.com/questions/30549489/what-is-this-spring-jpa-open-in-view-true-property-in-spring-boot
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        enable_lazy_load_no_trans: true
+        jdbc:
+          lob:
+            non_contextual_creation: true
+  sql:
+    init:
+      mode: never
+  cache:
+    type: redis
+    cache-names: "forStaffServiceUsers"
+  redis:
+    host: localhost
+    port: 6379
+    timeout: 1000
+    ssl: false
+    lettuce:
+      pool:
+        max-wait: 1000
+        max-active: 1000
+
+  rabbitmq:
+    host: ${server.host}
+    port: 5672
+    username: springboot
+    password: iA8hE3eB5rN7wO6v
+    staff:
+      default-exchange: staff.defaultDirectExchange
+      queues:
+        turniket-notification-for-staff:
+          name: staff.turniket-notification-for-staff
+          durable: true
+          routing-key: turniket-notification-for-staff
+
+    exception-handler:
+      default-exchange: exceptionHandler.defaultDirectExchange
+      queues:
+        bot-queues:
+          name: exceptionHandler.bot-queue
+          durable: true
+          routing-key: bot-queue-key
+logging:
+  pattern:
+    file: "%d{yyyy-MM-dd HH:mm:ss} - %msg%n"
+    name: /home/ubuntu/erp/logs/staff/staff.log
+  level:
+    org.springframework.web: ERROR
+    org.hibernate: ERROR
+
+springdoc:
+  api-docs:
+    enabled: true
+    path: /api-docs
+  swagger-ui:
+    enabled: true
+    path: /swagger
+
+
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: http://pdperpusername:123456pdperpusername@185.74.6.107:8700/eureka
+  instance:
+    hostname: 185.74.6.107
+
+employeeWorkingStartTime: '09:00:00'

@@ -1,0 +1,24 @@
+{
+  "phoneNumber": {
+    "options": [
+      {
+        "id": "827ab390-bae8-484d-a340-335ed59d42be",
+        "name": "Brother"
+      }
+    ],
+    "action": {
+      "url": "/api/staff/v1/phone-number-type/crud",
+      "create": true,
+      "edit": true,
+      "delete": true
+    },
+    "phoneNumbers": [
+      {
+        "id": null,
+        "phoneNumber": null,
+        "phoneNumberType": "827ab390-bae8-484d-a340-335ed59d42be",
+        "main": false
+      }
+    ]
+  }
+}

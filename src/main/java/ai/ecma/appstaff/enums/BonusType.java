@@ -1,0 +1,14 @@
+package ai.ecma.appstaff.enums;
+
+// HODIMGA BERILADAIGAN BONUS TURLARI
+public enum BonusType {
+
+    // SAVDODAN BERILADIGAN BONUS TURI
+    TRADE,
+
+    // LEADDAN BERILADIGAN BONUS TURI
+    LEAD,
+
+    // BOSHQA BARCHA BONUS TURLARI
+    OTHER
+}
